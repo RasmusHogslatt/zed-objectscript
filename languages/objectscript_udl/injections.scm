@@ -127,3 +127,12 @@
     (#set! injection.include-children "true")
 )
 
+; Heuristic: HTML in ObjectScript string literals
+(string_literal) @injection.content
+  (#match? @injection.content "<\\s*\\w+(\\s|/?>)")
+  (#set! injection.language "html")
+
+; Heuristic: JavaScript-like content in ObjectScript string literals
+(string_literal) @injection.content
+  (#match? @injection.content "^(?:\\s*)?(function\\s|var\\s|let\\s|const\\s|\\$\\()")
+  (#set! injection.language "javascript")

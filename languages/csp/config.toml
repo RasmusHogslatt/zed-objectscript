@@ -1,0 +1,3 @@
+name = "csp"
+grammar = "html"
+path_suffixes = ["csp"]
